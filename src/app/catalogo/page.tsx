@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import {
+  categories,
+  formatProductPrice,
+  products,
+} from "@/data/products";
 
 type CatalogPageProps = {
   searchParams: Promise<{
@@ -9,106 +14,6 @@ type CatalogPageProps = {
   }>;
 };
 
-type Product = {
-  slug: string;
-  name: string;
-  category: string;
-  categoryLabel: string;
-  description: string;
-  price: number | null;
-  colors: string[];
-  icon: string;
-  customizable: boolean;
-  featured?: boolean;
-};
-
-const categories = [
-  { id: "todos", label: "Todos" },
-  { id: "camisetas", label: "Camisetas" },
-  { id: "hoodies", label: "Hoodies" },
-  { id: "calentadores", label: "Calentadores" },
-  { id: "conjuntos", label: "Conjuntos" },
-  { id: "uniformes", label: "Uniformes" },
-  { id: "deportiva", label: "Deportiva" },
-];
-
-const products: Product[] = [
-  {
-    slug: "hoodie-oversize",
-    name: "Hoodie Oversize",
-    category: "hoodies",
-    categoryLabel: "Hoodies",
-    description:
-      "Hoodie de corte amplio disponible para estampado, bordado o diseño personalizado.",
-    price: 24.99,
-    colors: ["#111111", "#f5f5f5", "#475569", "#7f1d1d"],
-    icon: "🧥",
-    customizable: true,
-    featured: true,
-  },
-  {
-    slug: "camiseta-classic",
-    name: "Camiseta Classic",
-    category: "camisetas",
-    categoryLabel: "Camisetas",
-    description:
-      "Camiseta cómoda para diseños personales, marcas, eventos y emprendimientos.",
-    price: 12.99,
-    colors: ["#111111", "#f5f5f5", "#1e3a8a", "#166534"],
-    icon: "👕",
-    customizable: true,
-  },
-  {
-    slug: "calentador-deportivo",
-    name: "Calentador Deportivo",
-    category: "calentadores",
-    categoryLabel: "Calentadores",
-    description:
-      "Conjunto deportivo configurable por color, tela, talla y detalles personalizados.",
-    price: 34.99,
-    colors: ["#111111", "#172554", "#881337"],
-    icon: "🏃",
-    customizable: true,
-    featured: true,
-  },
-  {
-    slug: "uniforme-empresarial",
-    name: "Uniforme Empresarial",
-    category: "uniformes",
-    categoryLabel: "Uniformes",
-    description:
-      "Uniformes para negocios y empresas con logotipo, nombres y colores corporativos.",
-    price: null,
-    colors: ["#111111", "#f5f5f5", "#1e3a8a"],
-    icon: "👔",
-    customizable: true,
-  },
-  {
-    slug: "conjunto-street",
-    name: "Conjunto Street",
-    category: "conjuntos",
-    categoryLabel: "Conjuntos",
-    description:
-      "Conjunto urbano confeccionado para combinar comodidad, estilo y personalización.",
-    price: 39.99,
-    colors: ["#111111", "#3f3f46", "#78350f"],
-    icon: "✨",
-    customizable: true,
-  },
-  {
-    slug: "camiseta-deportiva",
-    name: "Camiseta Deportiva",
-    category: "deportiva",
-    categoryLabel: "Ropa deportiva",
-    description:
-      "Camiseta ligera para equipos, competencias y actividades deportivas.",
-    price: 16.99,
-    colors: ["#dc2626", "#1d4ed8", "#15803d", "#111111"],
-    icon: "🎽",
-    customizable: true,
-  },
-];
-
 export const metadata: Metadata = {
   title: "Catálogo",
   description:
@@ -117,14 +22,6 @@ export const metadata: Metadata = {
 
 function getStringValue(value: string | string[] | undefined) {
   return typeof value === "string" ? value : "";
-}
-
-function formatPrice(price: number | null) {
-  if (price === null) {
-    return "Solicitar cotización";
-  }
-
-  return `Desde $${price.toFixed(2)}`;
 }
 
 export default async function CatalogPage({
@@ -158,8 +55,10 @@ export default async function CatalogPage({
 
   const sortedProducts = [...filteredProducts].sort((first, second) => {
     if (order === "precio-menor") {
-      return (first.price ?? Number.MAX_SAFE_INTEGER) -
-        (second.price ?? Number.MAX_SAFE_INTEGER);
+      return (
+        (first.price ?? Number.MAX_SAFE_INTEGER) -
+        (second.price ?? Number.MAX_SAFE_INTEGER)
+      );
     }
 
     if (order === "precio-mayor") {
@@ -188,15 +87,18 @@ export default async function CatalogPage({
             <Link className="transition hover:text-lime-300" href="/">
               Inicio
             </Link>
+
             <Link className="font-bold text-lime-300" href="/catalogo">
               Catálogo
             </Link>
+
             <Link
               className="transition hover:text-lime-300"
               href="/personalizar"
             >
               Personalizar
             </Link>
+
             <Link
               className="transition hover:text-lime-300"
               href="/seguimiento"
@@ -247,6 +149,7 @@ export default async function CatalogPage({
                 >
                   Buscar producto
                 </label>
+
                 <input
                   id="buscar"
                   name="buscar"
@@ -264,6 +167,7 @@ export default async function CatalogPage({
                 >
                   Ordenar
                 </label>
+
                 <select
                   id="orden"
                   name="orden"
@@ -321,6 +225,7 @@ export default async function CatalogPage({
               <p className="text-sm font-black uppercase tracking-[0.2em] text-zinc-500">
                 Resultados
               </p>
+
               <h2 className="mt-2 text-3xl font-black uppercase">
                 {sortedProducts.length}{" "}
                 {sortedProducts.length === 1 ? "producto" : "productos"}
@@ -385,7 +290,7 @@ export default async function CatalogPage({
                     <div className="mt-6 flex items-end justify-between gap-4 border-t border-black/10 pt-5">
                       <div>
                         <p className="text-lg font-black">
-                          {formatPrice(product.price)}
+                          {formatProductPrice(product.price)}
                         </p>
 
                         <div className="mt-3 flex items-center gap-2">
@@ -414,13 +319,16 @@ export default async function CatalogPage({
           ) : (
             <div className="rounded-3xl border border-dashed border-black/20 bg-white px-6 py-20 text-center">
               <p className="text-5xl">🔍</p>
+
               <h2 className="mt-6 text-2xl font-black uppercase">
                 No encontramos productos
               </h2>
+
               <p className="mx-auto mt-3 max-w-md leading-7 text-zinc-600">
                 Prueba con otro término o elimina los filtros para volver a ver
                 todo el catálogo.
               </p>
+
               <Link
                 href="/catalogo"
                 className="mt-7 inline-flex rounded-full bg-black px-6 py-3 text-sm font-black uppercase tracking-wider text-white"
@@ -437,9 +345,11 @@ export default async function CatalogPage({
               <p className="text-sm font-black uppercase tracking-[0.2em]">
                 ¿No encuentras lo que necesitas?
               </p>
+
               <h2 className="mt-3 text-3xl font-black uppercase sm:text-4xl">
                 Podemos fabricar otro tipo de prenda
               </h2>
+
               <p className="mt-4 max-w-2xl leading-7 text-black/70">
                 Envíanos una referencia o explícanos tu idea para preparar una
                 cotización personalizada.
