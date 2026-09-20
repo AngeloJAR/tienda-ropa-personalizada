@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { WhatsAppFloat } from "@/components/whatsapp-float";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,16 +23,16 @@ export const metadata: Metadata = {
     template: "%s | Tu Marca",
   },
   description:
-    "Creamos camisetas, hoodies, calentadores, uniformes y prendas personalizadas a medida con tus diseños o ideas.",
+    "Camisetas, hoodies, calentadores, uniformes y prendas personalizadas con tus diseños o ideas.",
   keywords: [
     "ropa personalizada",
     "ropa a medida",
     "camisetas personalizadas",
     "hoodies personalizados",
-    "calentadores personalizados",
-    "uniformes",
+    "uniformes empresariales",
     "ropa deportiva",
     "confección de ropa",
+    "Ecuador",
   ],
   openGraph: {
     type: "website",
@@ -41,13 +45,22 @@ export const metadata: Metadata = {
   category: "Moda y confección",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+type RootLayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col bg-brand-paper">
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+        <WhatsAppFloat />
+      </body>
     </html>
   );
 }
