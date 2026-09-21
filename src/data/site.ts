@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "NUNA",
-  shortName: "TuMarca",
+  shortName: "NUNA",
   description:
     "Ropa personalizada y a medida para personas, equipos, emprendimientos y empresas.",
   whatsappNumber: "593995303067",
