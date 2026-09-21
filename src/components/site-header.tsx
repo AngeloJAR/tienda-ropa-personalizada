@@ -11,7 +11,7 @@ const navigation = [
 function Logo() {
   return (
     <span className="text-xl font-black uppercase tracking-[0.16em]">
-      Tu<span className="text-brand-lilac">Marca</span>
+      NU<span className="text-brand-lilac">NA</span>
       <span className="text-brand-red">.</span>
     </span>
   );

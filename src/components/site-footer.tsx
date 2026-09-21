@@ -15,7 +15,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 sm:px-8 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p className="text-xl font-black uppercase tracking-[0.16em]">
-            Tu<span className="text-brand-lilac">Marca</span>
+            NU<span className="text-brand-lilac">NA</span>
             <span className="text-brand-red">.</span>
           </p>
           <p className="mt-3 max-w-md text-sm leading-6 text-zinc-400">
