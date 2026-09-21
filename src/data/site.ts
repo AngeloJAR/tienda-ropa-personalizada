@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Tu Marca",
+  name: "NUNA",
   shortName: "TuMarca",
   description:
     "Ropa personalizada y a medida para personas, equipos, emprendimientos y empresas.",

@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  applicationName: "Tu Marca",
+  applicationName: "NUNA",
   title: {
-    default: "Tu Marca | Ropa personalizada y a medida",
-    template: "%s | Tu Marca",
+    default: "NUNA | Ropa personalizada y a medida",
+    template: "%s | NUNA",
   },
   description:
     "Camisetas, hoodies, calentadores, uniformes y prendas personalizadas con tus diseños o ideas.",
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_EC",
-    siteName: "Tu Marca",
-    title: "Tu Marca | Ropa personalizada y a medida",
+    siteName: "NUNA",
+    title: "NUNA | Ropa personalizada y a medida",
     description:
       "Elige una prenda, envía tu diseño o cuéntanos tu idea. Nosotros la confeccionamos para ti.",
   },
