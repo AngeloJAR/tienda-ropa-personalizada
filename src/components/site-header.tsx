@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const navigation = [
@@ -10,9 +11,20 @@ const navigation = [
 
 function Logo() {
   return (
-    <span className="text-xl font-black uppercase tracking-[0.16em]">
-      NU<span className="text-brand-lilac">NA</span>
-      <span className="text-brand-red">.</span>
+    <span className="flex items-center gap-3">
+      <Image
+        src="/nuna-logo.jpeg"
+        alt="NUNA, ropa con propósito"
+        width={56}
+        height={56}
+        priority
+        className="h-14 w-14 rounded-full object-cover"
+      />
+
+      <span className="hidden text-xl font-black uppercase tracking-[0.16em] sm:inline">
+        NU<span className="text-brand-lilac">NA</span>
+        <span className="text-brand-red">.</span>
+      </span>
     </span>
   );
 }
@@ -20,7 +32,7 @@ function Logo() {
 export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-brand-black/95 text-white backdrop-blur-xl">
-      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
+      <div className="mx-auto flex min-h-20 max-w-7xl items-center justify-between gap-5 px-5 py-3 sm:px-8">
         <Link href="/" aria-label="Ir al inicio">
           <Logo />
         </Link>
@@ -81,4 +93,3 @@ export function SiteHeader() {
     </header>
   );
 }
-
