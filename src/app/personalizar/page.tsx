@@ -431,7 +431,7 @@ function PersonalizationForm({
           </div>
 
           <div className="rounded-[2rem] border border-brand-purple/15 bg-white p-7">
-            <p className="font-black">WhatsApp temporal</p>
+            <p className="font-black">WhatsApp</p>
             <p className="mt-2 text-lg font-black text-brand-purple">
               {siteConfig.whatsappDisplay}
             </p>

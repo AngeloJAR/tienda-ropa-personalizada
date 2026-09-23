@@ -3,8 +3,8 @@ export const siteConfig = {
   shortName: "NUNA",
   description:
     "Ropa personalizada y a medida para personas, equipos, emprendimientos y empresas.",
-  whatsappNumber: "593995303067",
-  whatsappDisplay: "099 530 3067",
+  whatsappNumber: "593998113163",
+  whatsappDisplay: "0998113163",
 };
 
 export function createWhatsAppUrl(message: string) {

@@ -22,7 +22,7 @@ export function SiteFooter() {
             {siteConfig.description}
           </p>
           <p className="mt-4 text-sm font-bold text-brand-lilac">
-            WhatsApp temporal: {siteConfig.whatsappDisplay}
+            WhatsApp: {siteConfig.whatsappDisplay}
           </p>
         </div>
 
